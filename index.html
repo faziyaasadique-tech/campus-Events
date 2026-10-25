@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>College Event Registration Portal</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="top">
+    <div class="wrap top-inner">
+      <div>
+        <h1>Campus Events</h1>
+        <p class="sub">Find an event, register in a minute, manage your spot.</p>
+      </div>
+      <nav class="tabs" aria-label="Sections">
+        <button class="tab active" data-view="browse">Browse events</button>
+        <button class="tab" data-view="mine">My registrations <span id="myCount" class="pill">0</span></button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <!-- Browse view -->
+    <section id="view-browse">
+      <form class="filters" id="filters" onsubmit="return false">
+        <label class="field grow">
+          <span>Search by name</span>
+          <input type="search" id="fName" placeholder="e.g. Hackathon">
+        </label>
+        <label class="field">
+          <span>Category</span>
+          <select id="fCategory"><option value="">All categories</option></select>
+        </label>
+        <label class="field">
+          <span>Date</span>
+          <input type="date" id="fDate">
+        </label>
+        <button type="button" class="btn ghost" id="clearFilters">Clear</button>
+      </form>
+
+      <p id="resultInfo" class="info" aria-live="polite"></p>
+      <div id="eventGrid" class="grid"></div>
+    </section>
+
+    <!-- My registrations view -->
+    <section id="view-mine" hidden>
+      <h2>Events you registered for</h2>
+      <div id="myList" class="list"></div>
+    </section>
+
+  </main>
+
+  <!-- Event details + registration -->
+  <dialog id="eventDialog">
+    <div class="dlg-head">
+      <h3 id="dTitle"></h3>
+      <button class="close" id="dClose" aria-label="Close">&times;</button>
+    </div>
+    <div class="dlg-body">
+      <p class="meta" id="dMeta"></p>
+      <p id="dDesc"></p>
+      <p class="seats" id="dSeats"></p>
+
+      <form id="regForm" novalidate>
+        <h4>Register</h4>
+        <label class="field">
+          <span>Full name</span>
+          <input id="rName" autocomplete="name">
+          <small class="err" id="eName"></small>
+        </label>
+        <label class="field">
+          <span>Email</span>
+          <input id="rEmail" type="email" autocomplete="email">
+          <small class="err" id="eEmail"></small>
+        </label>
+        <label class="field">
+          <span>Roll number</span>
+          <input id="rRoll">
+          <small class="err" id="eRoll"></small>
+        </label>
+        <label class="field">
+          <span>Phone (10 digits)</span>
+          <input id="rPhone" inputmode="numeric" maxlength="10">
+          <small class="err" id="ePhone"></small>
+        </label>
+        <button class="btn" id="submitBtn" type="submit">Register for this event</button>
+        <p class="err form-msg" id="formMsg"></p>
+      </form>
+    </div>
+  </dialog>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
